@@ -6,6 +6,5 @@ namespace Financas.Infra.Persistence.Repositories.Interfaces
     public interface ITransactionRepository : IRepositoryBase<Transaction>
     {
         Task<Transaction?> GetByIdAsync(Guid id);
-        Task CreateAsync(Transaction transaction);
     }
 }
