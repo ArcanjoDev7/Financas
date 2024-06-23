@@ -2,7 +2,7 @@
 
 namespace Financas.Persistence.Repositories.Interfaces
 {
-    internal interface IRevenueRepository : IRepositoryBase<Revenue>
+    public interface IRevenueRepository : IRepositoryBase<Revenue>
     {
         Task<IEnumerable<Revenue>> GetByCategoria(string categoria);
         Task<IEnumerable<Revenue>> GetByDateRange(DateTime startDate, DateTime endDate);

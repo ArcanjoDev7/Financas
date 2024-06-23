@@ -1,6 +1,6 @@
 ﻿namespace Financas.Domain.Requests
 {
-    public record CreatedUserRequest
+    public record CreateUserRequest
     {
         public required string Name { get; set; }
         public required string Email { get; set; }

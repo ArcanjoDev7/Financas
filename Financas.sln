@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Financas.Domain", "Financas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Financas.Infra.Persistence", "Financas.Persistence\Financas.Infra.Persistence.csproj", "{64C806DF-6097-479E-9662-E13BA9F06BAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financas.Service", "Financas.Service\Financas.Service.csproj", "{3A155734-DC26-4494-B4CB-4B8104AF707E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Financas.Service", "Financas.Service\Financas.Service.csproj", "{3A155734-DC26-4494-B4CB-4B8104AF707E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financas.Aplication", "Financas.Aplication\Financas.Aplication.csproj", "{4E0931F7-AE84-4D64-A4F1-0FA9BCD0D886}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{3A155734-DC26-4494-B4CB-4B8104AF707E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A155734-DC26-4494-B4CB-4B8104AF707E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A155734-DC26-4494-B4CB-4B8104AF707E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E0931F7-AE84-4D64-A4F1-0FA9BCD0D886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E0931F7-AE84-4D64-A4F1-0FA9BCD0D886}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E0931F7-AE84-4D64-A4F1-0FA9BCD0D886}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E0931F7-AE84-4D64-A4F1-0FA9BCD0D886}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

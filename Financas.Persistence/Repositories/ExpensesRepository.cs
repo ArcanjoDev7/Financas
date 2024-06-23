@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Financas.Persistence.Repositories
 {
-    public class ExpensesRepositoryy(AppDbContext context) : RepositoryBase<Expenses>(context), IExpensesRepository
+    public class ExpensesRepository(AppDbContext context) : RepositoryBase<Expenses>(context), IExpensesRepository
     {
         public async Task<IEnumerable<Expenses>> GetByCategoria(string categories)
         {

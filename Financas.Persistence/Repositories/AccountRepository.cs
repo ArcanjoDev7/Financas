@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Financas.Infra.Persistence.Repositories
     {
-    public class AccoutRepository(AppDbContext context) : RepositoryBase<Account>(context), IAccountRepository
+    public class AccountRepository(AppDbContext context) : RepositoryBase<Account>(context), IAccountRepository
         {
             public async Task<Account?> GetByIdAsync(Guid id)
             {
