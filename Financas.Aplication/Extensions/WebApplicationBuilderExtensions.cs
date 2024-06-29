@@ -7,6 +7,7 @@ using Financas.Persistence.Repositories.Interfaces;
 using Financas.Service.Service;
 using Financas.Service.Service.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -37,7 +38,6 @@ namespace Financas.Aplication.Extensions
                 };
             });
 
-
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(x =>
             {
@@ -66,14 +66,16 @@ namespace Financas.Aplication.Extensions
 
         public static void ConfigureDependencies(this WebApplicationBuilder builder)
         {
+            var secret = builder.Configuration.GetValue<string>("Secret") ?? throw new NullReferenceException("Secret");
+
             // General Services
             builder.Services
-           .AddTransient<ITokenService, TokenService>();
+           .AddTransient<ITokenService, TokenService>(s => new TokenService(secret));
 
             // Library
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseNpgsql(builder.Configuration.GetConnectionString("default"));
+                options.UseNpgsql(builder.Configuration.GetConnectionString("default"), x => x.MigrationsAssembly("Financas.Aplication"));
             });
             NpgsqlConnection.GlobalTypeMapper.EnableDynamicJson();
 
@@ -85,6 +87,5 @@ namespace Financas.Aplication.Extensions
                 .AddTransient<ITransactionRepository, TransactionRepository>()
                 .AddTransient<IUserRepository, UserRepository>();              
         }
-
     }
 }

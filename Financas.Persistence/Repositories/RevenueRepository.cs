@@ -7,7 +7,7 @@ namespace Financas.Persistence.Repositories
 {
     public class RevenueRepository(AppDbContext context) : RepositoryBase<Revenue>(context), IRevenueRepository
     {
-        public async Task<IEnumerable<Revenue>> GetByCategoria(string caregories)
+        public async Task<List<Revenue>> GetAsNoTrackingAsync(string caregories)
         {
             return await Context.Revenue
                 .AsNoTracking()
@@ -15,19 +15,12 @@ namespace Financas.Persistence.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Revenue>> GetByDateRange(DateTime startDate, DateTime endDate)
+        public async Task<decimal> GetTotalRevenueAsync(DateTime startDate, DateTime endDate)
         {
             return await Context.Revenue
-                .AsNoTracking()
-                .Where(e => e.Data >= startDate && e.Data <= endDate)
-                .ToListAsync();
-        }
-
-        public async Task<decimal> GetTotalRevenueByDateRange(DateTime startDate, DateTime endDate)
-        {
-            return await Context.Revenue
-               .Where(e => e.Data >= startDate && e.Data <= endDate)
-               .SumAsync(e => e.value);
+               .AsNoTracking()
+               .Where(e => e.Date >= startDate && e.Date <= endDate)
+               .SumAsync(e => e.Value);
         }
     }
 }

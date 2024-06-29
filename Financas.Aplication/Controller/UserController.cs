@@ -13,6 +13,7 @@ namespace Financas.Aplication.Controller
     public class UserController(IUserRepository userRepository) : ControllerBase
     {
         protected readonly IUserRepository UserRepository = userRepository;
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateUserRequest model)
         {
@@ -79,6 +80,5 @@ namespace Financas.Aplication.Controller
             await UserRepository.SaveAsync();
             return Ok();
         }
-
     }
 }
