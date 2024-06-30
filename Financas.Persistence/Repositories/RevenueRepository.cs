@@ -7,6 +7,13 @@ namespace Financas.Persistence.Repositories
 {
     public class RevenueRepository(AppDbContext context) : RepositoryBase<Revenue>(context), IRevenueRepository
     {
+        public async Task<bool> CategoriesExistAsync(string caregories)
+        {
+            return await Context.Revenue
+                .AsNoTracking()
+                .Select(x => x.Categories)
+                .AnyAsync(x => x == caregories);
+        }
         public async Task<List<Revenue>> GetAsNoTrackingAsync(string caregories)
         {
             return await Context.Revenue

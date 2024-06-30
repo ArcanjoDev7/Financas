@@ -7,5 +7,8 @@
         public required string Description { get; set; }
         public decimal Value { get; set; }
         public DateTime Date { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        public DateTime? UpdateTime { get; set; }
     }
 }

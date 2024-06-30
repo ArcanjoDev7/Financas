@@ -1,6 +1,4 @@
-﻿using Financas.Domain.Models;
-
-namespace Financas.Domain.Requests
+﻿namespace Financas.Domain.Requests
 {
     public record CreateExpensesRequest
     {

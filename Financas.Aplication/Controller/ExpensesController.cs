@@ -15,19 +15,22 @@ namespace Financas.Aplication.Controller
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateExpensesRequest model)
         {
-            var expenses = await ExpensesRepository.GetAsNoTrackingAsync(User.Identity.Name);
-            if (expenses is null)
+            if (await ExpensesRepository.CategoriesExistAsync(model.Categories))
             {
-                return Unauthorized();
+                return BadRequest(new
+                {
+                    Message = "A categoria ja esta em uso."
+                });
             }
             var categories = new Expenses
             {
                 Categories = model.Categories,
-                Description = model.Description
+                Description = model.Description,
+                CreatedAt = DateTime.UtcNow
             };
             await ExpensesRepository.CreateAsync(categories);
             await ExpensesRepository.SaveAsync();
-            return Ok();
+            return Created("", categories);
         }
         [HttpGet]
 

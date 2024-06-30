@@ -15,22 +15,26 @@ namespace Financas.Aplication.Controller
             protected readonly IUserRepository UserRepository = userRepository;
 
             [HttpPost]
-            public async Task<IActionResult> Create([FromBody] CreateExpensesRequest model)
+            public async Task<IActionResult> Create([FromBody] CreateRevenueRequest model)
             {
-                var expenses = await RevenueRepository.GetAsNoTrackingAsync(User.Identity.Name);
-                if (expenses is null)
+                if(await RevenueRepository.CategoriesExistAsync(model.Categories))
                 {
-                    return Unauthorized();
+                    return BadRequest(new
+                    {
+                        Message = "A categoria ja esta em uso."
+                    });
                 }
                 var categories = new Revenue
                 {
                     Categories = model.Categories,
-                    Description = model.Description
+                    Description = model.Description,
+                    CreatedAt = DateTime.UtcNow
                 };
                 await RevenueRepository.CreateAsync(categories);
                 await RevenueRepository.SaveAsync();
-                return Ok();
+                return Created("", categories);
             }
+
             [HttpGet]
 
             public async Task<ActionResult> Get()
