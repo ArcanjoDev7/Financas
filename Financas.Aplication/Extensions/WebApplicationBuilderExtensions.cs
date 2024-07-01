@@ -81,7 +81,6 @@ namespace Financas.Aplication.Extensions
 
             // Repositories
             builder.Services
-                .AddTransient<IAccountRepository, AccountRepository>()
                 .AddTransient<IExpensesRepository, ExpensesRepository>()
                 .AddTransient<IRevenueRepository, RevenueRepository>()
                 .AddTransient<ITransactionRepository, TransactionRepository>()

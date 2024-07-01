@@ -9,9 +9,12 @@ namespace Financas.Infra.Persistence.Repositories
 {
     public class TransactionRepository(AppDbContext context) : RepositoryBase<Transaction>(context), ITransactionRepository
     {
-        public static async Task GetAsNoTrackingAsync(object name)
+        public async Task<bool> TransactionExistAsync(string transaction)
         {
-            throw new NotImplementedException();
+            return await Context.Transaction
+                .AsNoTracking()
+                .Select(x => x.Description)
+                .AnyAsync(x => x == transaction);
         }
 
         public async Task<List<Transaction>> GetAllAsync(Guid userId)

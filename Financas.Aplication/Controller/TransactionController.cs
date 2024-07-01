@@ -20,7 +20,7 @@ namespace Financas.Aplication.Controller
             {
                 return BadRequest(new
                 {
-                    Message = "O Transaction ja esta em uso."
+                    Message = "A transação ja foi feita."
                 });
             }
             var userId = User.FindFirst("sub")?.Value;
